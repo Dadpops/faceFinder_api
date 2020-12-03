@@ -1,16 +1,15 @@
-  
 const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
-const knex = require('knex')
+const knex = require('knex');
 
 const db = knex({
   client: 'pg',
   connection: {
     host : '127.0.0.1',
     user : 'postgres',
-    password : '',
+    password : 'test',
     database : 'facefinder'
   }
 });
@@ -95,6 +94,6 @@ app.put('/image', (req, res) => {
   .catch(err => res.status(400).json('unable to get entries'))
 })
 
-app.listen(3000, ()=> {
-  console.log('app is running on port 3000');
+app.listen(process.env.PORT || 3000, ()=> {
+  console.log(`app is running on port ${process.env.PORT}`);
 })
