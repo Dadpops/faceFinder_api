@@ -8,7 +8,7 @@ const db = knex({
   client: 'pg',
   connection: {
     connectionString : process.env.DATABASE_URL,
-    ssl : true
+    ssl : true,
   }
 });
 
@@ -65,7 +65,7 @@ app.post('/register', (req, res) => {
       .then(trx.commit)
       .catch(trx.rollback)
     })
-    .catch(err => res.status(400).json('unable to register'))
+    .catch(err => console.log(err), res.status(400).json('unable to register'))
 })
 
 app.get('/profile/:id', (req, res) => {
